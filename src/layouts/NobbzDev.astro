@@ -1,0 +1,68 @@
+---
+const { title } = Astro.props;
+import "../styles/base.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div
+      class:list={[
+        "w-1/1",
+        "md:w-[1024px]",
+        "m-auto",
+        "md:border-4",
+        "rounded-[12px]",
+      ]}
+    >
+      <div class:list={["md:flex"]}>
+        <div
+          id="main"
+          class:list={[
+            "w-1/1",
+            "border-4",
+            "p-1",
+            "rounded-[12px]",
+            "md:w-4/5",
+            "md:m-1",
+          ]}
+        >
+          <slot />
+        </div>
+        <nav
+          id="side-nav"
+          class:list={[
+            "w-1/1",
+            "border-4",
+            "mt-1",
+            "p-1",
+            "rounded-[12px]",
+            "md:w-1/5",
+            "md:m-1",
+          ]}
+        >
+          <a href="/blog">Blog</a>
+        </nav>
+      </div>
+      <footer
+        id="bottom"
+        class:list={[
+          "w-1/1",
+          "border-4",
+          "mt-1",
+          "p-1",
+          "rounded-[12px]",
+          "md:m-1",
+        ]}
+      >
+        Placeholder for the footer
+      </footer>
+    </div>
+  </body>
+</html>

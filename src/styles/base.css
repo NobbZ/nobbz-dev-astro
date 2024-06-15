@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  --background-color: black;
+  --text-color: aliceblue;
+  --highligh-color: aqua;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#main {
+  h1 {
+    @apply text-4xl;
+    @apply font-extrabold;
+    @apply text-[--highligh-color];
+  }
+  h2 {
+    @apply text-3xl;
+    @apply font-extrabold;
+    @apply text-[color-mix(in_srgb,var(--highligh-color),var(--text-color)_15%)];
+  }
+  h3 {
+    @apply text-2xl;
+    @apply font-bold;
+    @apply text-[color-mix(in_srgb,var(--highligh-color),var(--text-color)_30%)];
+  }
+  h4 {
+    @apply text-xl;
+    @apply font-bold;
+    @apply text-[color-mix(in_srgb,var(--highligh-color),var(--text-color)_45%)];
+  }
+  h5 {
+    @apply text-lg;
+    @apply font-bold;
+    @apply text-[color-mix(in_srgb,var(--highligh-color),var(--text-color)_60%)];
+  }
+  h6 {
+    @apply text-base;
+    @apply font-bold;
+    @apply text-[color-mix(in_srgb,var(--highligh-color),var(--text-color)_75%)];
+  }
+
+  strong {
+    color: var(--highligh-color);
+  }
+}
