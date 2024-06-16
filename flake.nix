@@ -23,7 +23,10 @@
         system,
         ...
       }: {
-        formatter = pkgs.alejandra;
+        formatter = pkgs.writeShellScriptBin "formatter" ''
+          ${pkgs.lib.getExe pkgs.alejandra} .
+          yarn prettier -w .
+        '';
 
         # apps.serve.program = "${pkgs.writeShellScript "serve" ''
         #   set -e
