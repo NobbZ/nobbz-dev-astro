@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@astrojs/language-server": "^2.10.0",
+    "@mdx-js/language-server": "^0.4.8",
     "prettier": "^3.3.2",
     "prettier-plugin-astro": "^0.14.0"
   }
