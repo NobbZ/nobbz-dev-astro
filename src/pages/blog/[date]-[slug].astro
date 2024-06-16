@@ -4,7 +4,9 @@ import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
 import NobbzDev from "../../layouts/NobbzDev.astro";
-import { components } from "../../scripts/components";
+//import { components } from "../../scripts/components";
+
+const components = {};
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("blog");
