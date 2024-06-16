@@ -215,7 +215,7 @@ had called `callPackage` on that.
 }
 ```
 
-```
+```txt
 $ nix-build -E 'with import <nixpkgs> {}; (callPackages ./callpackages.nix { }).a.override { }'
 this derivation will be built:
   /nix/store/4sjzxijjfamjqgr8237lr638b8qkabnk-a.drv
