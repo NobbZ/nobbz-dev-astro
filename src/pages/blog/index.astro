@@ -4,9 +4,8 @@ import type { CollectionEntry } from "astro:content";
 
 import NobbzDev from "../../layouts/NobbzDev.astro";
 import Date from "../../components/Date.astro";
+import { postPath, authorPath } from "../../scripts/paths";
 
-type BlogEntry = CollectionEntry<"blog">;
-type AuthorEntry = CollectionEntry<"authors">;
 
 const blogEntries = await getCollection("blog")
   .then((collection) =>
@@ -21,11 +20,6 @@ const blogEntries = await getCollection("blog")
         }),
       ),
   );
-
-const postPath = (post: BlogEntry) =>
-  `/blog/${post.data.date.toISOString().substring(0, 10)}-${post.slug}`;
-
-const authorPath = (author: AuthorEntry) => `/author/${author.slug}`;
 ---
 
 <NobbzDev title="Blog">
