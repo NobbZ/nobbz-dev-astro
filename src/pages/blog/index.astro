@@ -1,25 +1,37 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 import NobbzDev from "../../layouts/NobbzDev.astro";
 import Date from "../../components/Date.astro";
 
 type BlogEntry = CollectionEntry<"blog">;
+type AuthorEntry = CollectionEntry<"authors">;
 
-// TODO: make this actually sort by date!
-const blogEntries = await getCollection("blog").then((collection) =>
-  collection.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
-);
+const blogEntries = await getCollection("blog")
+  .then((collection) =>
+    collection.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+  )
+  .then(
+    async (collection) =>
+      await Promise.all(
+        collection.map(async (entry) => {
+          const author = await getEntry(entry.data.author);
+          return { post: entry, author: author };
+        }),
+      ),
+  );
 
 const postPath = (post: BlogEntry) =>
   `/blog/${post.data.date.toISOString().substring(0, 10)}-${post.slug}`;
+
+const authorPath = (author: AuthorEntry) => `/author/${author.slug}`;
 ---
 
 <NobbzDev title="Blog">
   <ul>
     {
-      blogEntries.map((post: BlogEntry) => (
+      blogEntries.map(({ post, author }) => (
         <div class:list={["min-h-[150px]", "max-h-[150px]"]}>
           <div class:list={["flex", "flex-row", "justify-between"]}>
             <h2>
@@ -29,8 +41,11 @@ const postPath = (post: BlogEntry) =>
               <span class:list={["text-right"]}>
                 <Date datetime={post.data.date.toISOString()} />
               </span>
-              {/* TODO: make the author depending on the collection */}
-              <span class:list={["text-right"]}>{post.data.author}</span>
+              <span class:list={["text-right"]}>
+                <a href={authorPath(author)}>
+                  {author.data.first_name} {author.data.last_name}
+                </a>
+              </span>
             </div>
           </div>
           <div>
