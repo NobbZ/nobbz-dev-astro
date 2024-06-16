@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 import NobbzDev from "../../layouts/NobbzDev.astro";
+import Date from "../../components/Date.astro";
 
 type BlogEntry = CollectionEntry<"blog">;
 
@@ -25,11 +26,11 @@ const postPath = (post: BlogEntry) =>
               <a href={postPath(post)}>{post.data.title}</a>
             </h2>
             <div class:list={["flex", "flex-col"]}>
-              <span class:list={[]}>
-                {post.data.date.toISOString().substring(0, 10)}
+              <span class:list={["text-right"]}>
+                <Date datetime={post.data.date.toISOString()} />
               </span>
               {/* TODO: make the author depending on the collection */}
-              <span class:list={[]}>{post.data.author}</span>
+              <span class:list={["text-right"]}>{post.data.author}</span>
             </div>
           </div>
           <div>

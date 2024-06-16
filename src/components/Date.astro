@@ -1,0 +1,33 @@
+---
+export interface Props extends astroHTML.JSX.TimeHTMLAttributes {
+  format?: string;
+}
+
+const { datetime, format, ...props } = Astro.props;
+
+const lang = props.lang || "en";
+
+const timeData = { lang, datetime, "data-format": format };
+---
+
+<time data-relative {...props} {...timeData}>
+  <slot>
+    {datetime}
+  </slot>
+</time>
+
+<script>
+  import { DateTime } from "luxon";
+
+  const dateElements =
+    document.querySelectorAll<HTMLTimeElement>("[data-relative]");
+
+  dateElements.forEach((element) => {
+    const date: DateTime = DateTime.fromISO(element.dateTime);
+
+    const relative = date.setLocale(element.lang).toRelativeCalendar();
+    const format = element.dataset.format || "yyyy-MM-dd";
+
+    element.innerHTML = `<abbr title="${date.toFormat(format)}">${relative}</abbr>`;
+  });
+</script>
