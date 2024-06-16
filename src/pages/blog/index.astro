@@ -1,15 +1,27 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import NobbzDev from "../../layouts/NobbzDev.astro";
+
+type BlogEntry = CollectionEntry<"blog">;
 
 const blogEntries = await getCollection("blog");
+
+const postPath = (post: BlogEntry) =>
+  `/blog/${post.data.date.toISOString().substring(0, 10)}-${post.slug}`;
 ---
 
-<ul>
-  {
-    blogEntries.map((post) => (
-      <li>
-        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-      </li>
-    ))
-  }
-</ul>
+<NobbzDev title="Blog">
+  <ul>
+    {
+      blogEntries.map((post: BlogEntry) => (
+        <div>
+          <h2>
+            <a href={postPath(post)}>{post.data.title}</a>
+          </h2>
+        </div>
+      ))
+    }
+  </ul>
+</NobbzDev>

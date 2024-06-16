@@ -1,20 +1,32 @@
 ---
 import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+
+import NobbzDev from "../../layouts/NobbzDev.astro";
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("blog");
 
   return blogEntries.map((post) => ({
-    params: { slug: post.slug, date: post.data.date },
+    params: {
+      slug: post.slug,
+      date: post.data.date.toISOString().substring(0, 10),
+    },
     props: { post },
   }));
 }) satisfies GetStaticPaths;
+
+export type Props = {
+  post: CollectionEntry<"blog">;
+};
 
 const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<h1>{post.data.title}</h1>
+<NobbzDev title={post.data.title}>
+  <h1>{post.data.title}</h1>
 
-<Content />
+  <Content />
+</NobbzDev>

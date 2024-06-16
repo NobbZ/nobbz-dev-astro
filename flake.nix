@@ -38,8 +38,8 @@
             astro-ls = pkgs.writeShellScriptBin "astro-ls" ''exec yarn run astro-ls "$@"'';
           in
             builtins.attrValues {
-              inherit (pkgs) nodejs_20 yarn2nix nil;
-              inherit (pkgs.nodejs_20.pkgs) yarn;
+              inherit (pkgs) nodejs_20 yarn2nix nil tailwindcss-language-server;
+              inherit (pkgs.nodejs_20.pkgs) yarn typescript-language-server;
               inherit astro-ls;
             };
           # shellHook = config.pre-commit.installationScript;
