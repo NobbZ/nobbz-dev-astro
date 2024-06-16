@@ -6,7 +6,10 @@ import NobbzDev from "../../layouts/NobbzDev.astro";
 
 type BlogEntry = CollectionEntry<"blog">;
 
-const blogEntries = await getCollection("blog");
+// TODO: make this actually sort by date!
+const blogEntries = await getCollection("blog").then((collection) =>
+  collection.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+);
 
 const postPath = (post: BlogEntry) =>
   `/blog/${post.data.date.toISOString().substring(0, 10)}-${post.slug}`;
@@ -16,10 +19,23 @@ const postPath = (post: BlogEntry) =>
   <ul>
     {
       blogEntries.map((post: BlogEntry) => (
-        <div>
-          <h2>
-            <a href={postPath(post)}>{post.data.title}</a>
-          </h2>
+        <div class:list={["min-h-[150px]", "max-h-[150px]"]}>
+          <div class:list={["flex", "flex-row", "justify-between"]}>
+            <h2>
+              <a href={postPath(post)}>{post.data.title}</a>
+            </h2>
+            <div class:list={["flex", "flex-col"]}>
+              <span class:list={[]}>
+                {post.data.date.toISOString().substring(0, 10)}
+              </span>
+              {/* TODO: make the author depending on the collection */}
+              <span class:list={[]}>{post.data.author}</span>
+            </div>
+          </div>
+          <div>
+            {/* TODO: provide the hero image */}
+            {post.data.description}
+          </div>
         </div>
       ))
     }
