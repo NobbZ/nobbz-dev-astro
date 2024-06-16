@@ -1,53 +1,16 @@
 ---
-import { getCollection, getEntry } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
+import PostPreview from "../../components/PostPreview.astro";
 import NobbzDev from "../../layouts/NobbzDev.astro";
-import Date from "../../components/Date.astro";
-import { postPath, authorPath } from "../../scripts/paths";
 
-
-const blogEntries = await getCollection("blog")
-  .then((collection) =>
-    collection.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
-  )
-  .then(
-    async (collection) =>
-      await Promise.all(
-        collection.map(async (entry) => {
-          const author = await getEntry(entry.data.author);
-          return { post: entry, author: author };
-        }),
-      ),
-  );
+const blogEntries = await getCollection("blog").then((collection) =>
+  collection.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+);
 ---
 
 <NobbzDev title="Blog">
   <ul>
-    {
-      blogEntries.map(({ post, author }) => (
-        <div class:list={["min-h-[150px]", "max-h-[150px]"]}>
-          <div class:list={["flex", "flex-row", "justify-between"]}>
-            <h2>
-              <a href={postPath(post)}>{post.data.title}</a>
-            </h2>
-            <div class:list={["flex", "flex-col"]}>
-              <span class:list={["text-right"]}>
-                <Date datetime={post.data.date.toISOString()} />
-              </span>
-              <span class:list={["text-right"]}>
-                <a href={authorPath(author)}>
-                  {author.data.first_name} {author.data.last_name}
-                </a>
-              </span>
-            </div>
-          </div>
-          <div>
-            {/* TODO: provide the hero image */}
-            {post.data.description}
-          </div>
-        </div>
-      ))
-    }
+    {blogEntries.map((post) => <PostPreview post={post} />)}
   </ul>
 </NobbzDev>
