@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
 import NobbzDev from "../../layouts/NobbzDev.astro";
+import { components } from "../../scripts/components";
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("blog");
@@ -28,5 +29,5 @@ const { Content } = await post.render();
 <NobbzDev title={post.data.title}>
   <h1>{post.data.title}</h1>
 
-  <Content />
+  <Content components={components} />
 </NobbzDev>
