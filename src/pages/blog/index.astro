@@ -10,7 +10,5 @@ const blogEntries = await getCollection("blog").then((collection) =>
 ---
 
 <NobbzDev title="Blog">
-  <ul>
-    {blogEntries.map((post) => <PostPreview post={post} />)}
-  </ul>
+  {blogEntries.map((post) => <PostPreview post={post} />)}
 </NobbzDev>

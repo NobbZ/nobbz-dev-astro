@@ -29,7 +29,9 @@ const { Content } = await post.render();
 ---
 
 <NobbzDev title={post.data.title}>
-  <h1>{post.data.title}</h1>
+  <article>
+    <h1>{post.data.title}</h1>
 
-  <Content components={components} />
+    <Content components={components} />
+  </article>
 </NobbzDev>
