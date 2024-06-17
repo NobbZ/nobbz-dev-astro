@@ -49,6 +49,10 @@ body {
     color: var(--highlight-color);
   }
 
+  a {
+    @apply text-[var(--highlight-color)];
+  }
+
   pre {
     @apply m-2;
     @apply p-1;
@@ -63,8 +67,12 @@ body {
     }
   }
 
+  p {
+    @apply my-2
+  }
+
   ol {
-    @apply list-[upper-roman];
+    @apply list-decimal;
     @apply list-outside;
     @apply pl-8;
   }
@@ -73,5 +81,15 @@ body {
     @apply list-disc;
     @apply list-outside;
     @apply pl-8;
+  }
+
+  blockquote {
+    @apply pl-3;
+    @apply ml-1;
+    @apply py-3;
+    @apply my-1;
+    @apply border-[var(--highlight-color)];
+    @apply border-solid;
+    @apply border-l-2;
   }
 }
