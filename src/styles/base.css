@@ -54,4 +54,24 @@ body {
     @apply p-1;
     @apply rounded-[4px];
   }
+
+  p, ul, ol, h1, h2, h3, h4, h5, h6 {
+    code {
+      @apply bg-[color-mix(in_srgb,var(--background-color),var(--text-color)_15%)];
+      @apply p-0.5;
+      @apply rounded-sm;
+    }
+  }
+
+  ol {
+    @apply list-[upper-roman];
+    @apply list-outside;
+    @apply pl-8;
+  }
+
+  ul {
+    @apply list-disc;
+    @apply list-outside;
+    @apply pl-8;
+  }
 }
