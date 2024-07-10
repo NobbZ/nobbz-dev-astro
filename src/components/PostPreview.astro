@@ -13,7 +13,7 @@ const { post } = Astro.props;
 const author = await getEntry(post.data.author);
 ---
 
-<div class:list={["m-1", "min-h-[150px]", "max-h-[150px]"]}>
+<div class:list={["p-1", "min-h-[150px]", "max-h-[150px]"]}>
   <div class:list={["flex", "flex-row", "justify-between"]}>
     <h2 class:list={["text-3xl", "font-extrabold", "text-[--highlight-color]"]}>
       <a class:list={["hover:underline"]} href={postPath(post)}
