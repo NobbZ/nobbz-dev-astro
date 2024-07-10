@@ -1,0 +1,13 @@
+---
+export interface Props {
+  href: string;
+  disabled?: boolean;
+}
+
+const { href, disabled } = Astro.props;
+
+const enabled = !disabled;
+
+---
+
+<li class:list={["text-center", "p-2"]}>{enabled ? <a href={href}><slot/></a> : <a><s><slot /></s></a>}</li>

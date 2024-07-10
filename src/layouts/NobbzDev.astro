@@ -1,4 +1,6 @@
 ---
+import NavBox from "../components/NavBox.astro";
+
 const { title } = Astro.props;
 import "../styles/base.css";
 ---
@@ -35,20 +37,7 @@ import "../styles/base.css";
         >
           <slot />
         </div>
-        <nav
-          id="side-nav"
-          class:list={[
-            "w-1/1",
-            "border-4",
-            "mt-1",
-            "p-1",
-            "rounded-[12px]",
-            "md:w-1/5",
-            "md:m-1",
-          ]}
-        >
-          <a href="/blog">Blog</a>
-        </nav>
+        <NavBox />
       </div>
       <footer
         id="bottom"

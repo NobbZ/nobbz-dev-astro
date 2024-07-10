@@ -1,0 +1,21 @@
+---
+import NavItem from "./NavItem.astro";
+---
+
+<nav
+  id="side-nav"
+  class:list={[
+    "w-1/1",
+    "border-4",
+    "mt-1",
+    "p-1",
+    "rounded-[12px]",
+    "md:w-1/5",
+    "md:m-1",
+  ]}
+>
+  <ol>
+    <NavItem href="/blog">Blog</NavItem>
+    <NavItem href="/authors" disabled>Authors</NavItem>
+  </ol>
+</nav>
