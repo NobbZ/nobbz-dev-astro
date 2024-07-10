@@ -20,7 +20,7 @@ const author = await getEntry(post.data.author);
         >{post.data.title}</a
       >
     </h2>
-    <div class:list={["flex", "flex-col"]}>
+    <div class:list={["flex", "flex-col", "text-[color-mix(in_srgb,var(--highlight-color),var(--text-color)_50%)]"]}>
       <span class:list={["text-right"]}>
         <Date datetime={post.data.date.toISOString()} />
       </span>
