@@ -30,7 +30,7 @@ const { Content } = await post.render();
 
 <NobbzDev title={post.data.title}>
   <article>
-    <h1>{post.data.title}</h1>
+    <h1 class:list={["p-1"]}>{post.data.title}</h1>
 
     <Content components={components} />
   </article>
