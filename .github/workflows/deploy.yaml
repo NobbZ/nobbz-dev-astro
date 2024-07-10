@@ -50,5 +50,5 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: blog-nobbz-dev
           # directory: ./result
-          directory: ./public
+          directory: ./dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
