@@ -10,7 +10,7 @@ jobs:
       matrix:
         command:
           - prettier -c .
-          - tsc --noEmit
+          - astro check
     steps:
       - uses: actions/checkout@v4
         with: { token: "${{ secrets.GITHUB_TOKEN }}" }
