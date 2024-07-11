@@ -32,11 +32,11 @@ repos:
         files: ".*\\.([jt]sx?|astro|mdx?|mjs|json|ya?ml)$"
         entry: yarn prettier -w
 
-      - id: tsc
-        name: TypeScript Typecheck
+      - id: astro-check
+        name: Astro Check
         language: system
         files: "^src/.*"
-        entry: yarn tsc --noEmit
+        entry: yarn astro check
         pass_filenames: false
 
       - id: eslint
