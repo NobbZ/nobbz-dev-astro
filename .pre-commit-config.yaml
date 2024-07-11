@@ -38,3 +38,10 @@ repos:
         files: "^src/.*"
         entry: yarn tsc --noEmit
         pass_filenames: false
+
+      - id: eslint
+        name: ESlint
+        language: system
+        files: "^src/.*"
+        entry: yarn eslint
+        pass_filenames: false

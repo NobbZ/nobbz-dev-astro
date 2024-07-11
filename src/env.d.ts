@@ -1,5 +1,6 @@
-/// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
+
+import "../.astro/types";
 
 declare module "*.astro" {
   import type { AstroComponentFactory } from "astro/runtime/server";
