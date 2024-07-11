@@ -31,3 +31,10 @@ repos:
         language: system
         files: ".*\\.([jt]sx?|astro|mdx?|mjs|json|ya?ml)$"
         entry: yarn prettier -w
+
+      - id: tsc
+        name: TypeScript Typecheck
+        language: system
+        files: "^src/.*"
+        entry: yarn tsc --noEmit
+        pass_filenames: false
