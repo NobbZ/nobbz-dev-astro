@@ -43,6 +43,7 @@
           in
             builtins.attrValues {
               inherit (pkgs) nodejs_20 yarn2nix nil tailwindcss-language-server;
+              inherit (pkgs) pre-commit alejandra;
               inherit (pkgs.nodejs_20.pkgs) yarn typescript-language-server;
               inherit astro-ls mdx-language-server;
             };

@@ -4,29 +4,27 @@ on:
   push:
 
 jobs:
-  # preflight:
-  #   runs-on: ubuntu-22.04
-  #   strategy:
-  #     matrix:
-  #       command:
-  #         - test --verbose
-  #         - lint
-  #         - typecheck
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with: { token: "${{ secrets.GITHUB_TOKEN }}" }
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version-file: ".tool-versions"
-  #         cache: "yarn"
-  #         cache-dependency-path: "yarn.lock"
-  #     - run: yarn install
-  #     - run: yarn ${{matrix.command}}
+  preflight:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        command:
+          - prettier -c .
+    steps:
+      - uses: actions/checkout@v4
+        with: { token: "${{ secrets.GITHUB_TOKEN }}" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".tool-versions"
+          cache: "yarn"
+          cache-dependency-path: "yarn.lock"
+      - run: yarn install
+      - run: yarn ${{matrix.command}}
 
   deploy:
     runs-on: ubuntu-22.04
-    # needs:
-    #   - preflight
+    needs:
+      - preflight
     steps:
       - uses: actions/checkout@v4
         with: { token: "${{ secrets.GITHUB_TOKEN }}" }
