@@ -3,9 +3,9 @@ import { getCollection } from "astro:content";
 
 import NobbzDev from "../../layouts/NobbzDev.astro";
 import { authorPath } from "../../scripts/paths";
-import { withPosts, type AuthorWithPosts } from "../../scripts/authors";
+import { withPosts, type WithPosts, type Author } from "../../scripts/authors";
 
-const authorSorter = (a: AuthorWithPosts, b: AuthorWithPosts): number => {
+const authorSorter = (a: WithPosts<Author>, b: WithPosts<Author>): number => {
   const postCountA = a.posts.length;
   const postCountB = b.posts.length;
   return postCountA - postCountB;
