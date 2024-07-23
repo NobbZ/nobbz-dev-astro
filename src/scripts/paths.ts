@@ -12,5 +12,5 @@ export const postPath = (post: CollectionEntry<"blog">): string => {
 export const authorPath = (author: CollectionEntry<"authors">): string => {
   const slug = author.slug;
 
-  return `/author/${slug}`;
+  return `/authors/${slug}`;
 };
