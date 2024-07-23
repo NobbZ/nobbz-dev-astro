@@ -1,0 +1,5 @@
+---
+const { "class:list": classes } = Astro.props;
+---
+
+<h1 class:list={["text-3xl", "font-bold"].concat(classes ?? [])}><slot /></h1>

@@ -1,0 +1,26 @@
+---
+const { class: classes, ...props } = Astro.props;
+---
+
+<div
+  class:list={[
+    "md:relative",
+    "md:left-[calc((var(--content-width)-(var(--box-width)*0.95))/2-theme(padding.2))]",
+    "md:w-[calc(var(--box-width)*0.95)]",
+    "bg-pen",
+    "bg-box",
+    "px-[calc(2.25em+theme(padding.2)*2)]",
+    "py-[calc((2.25em+theme(padding.2)*2)/4)]",
+    "bg-no-repeat",
+    "shadow-xl",
+    "my-5",
+    "rounded-md",
+    "border-solid",
+    "border-[var(--highlight-color)]",
+    "border-2",
+    classes,
+  ]}
+  {...props}
+>
+  <slot />
+</div>

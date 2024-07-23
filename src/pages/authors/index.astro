@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+
+import NobbzDev from "../../layouts/NobbzDev.astro";
+import { authorPath } from "../../scripts/paths";
+import { withPosts, type WithPosts, type Author } from "../../scripts/authors";
+
+const authorSorter = (a: WithPosts<Author>, b: WithPosts<Author>): number => {
+  const postCountA = a.posts.length;
+  const postCountB = b.posts.length;
+  return postCountA - postCountB;
+};
+
+const authorEntries = await getCollection("authors")
+  .then((authors) => Promise.all(authors.map(withPosts)))
+  .then((authors) => authors.sort(authorSorter));
+---
+
+<NobbzDev title="Authors">
+  <article>
+    <h1>Authors</h1>
+    <ul>
+      {
+        authorEntries.map((author) => (
+          <li>
+            <a href={authorPath(author)}>{author.data.nick_name}</a> (
+            {author.posts.length})
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</NobbzDev>

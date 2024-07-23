@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  --background-color: black;
+  --text-color: aliceblue;
+  --highlight-color: aqua;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#main {
+  article {
+    h1 {
+      @apply text-4xl;
+      @apply font-extrabold;
+      @apply text-[--highlight-color];
+    }
+    h2 {
+      @apply text-3xl;
+      @apply font-extrabold;
+      @apply text-[color-mix(in_srgb,var(--highlight-color),var(--text-color)_15%)];
+    }
+    h3 {
+      @apply text-2xl;
+      @apply font-bold;
+      @apply text-[color-mix(in_srgb,var(--highlight-color),var(--text-color)_30%)];
+    }
+    h4 {
+      @apply text-xl;
+      @apply font-bold;
+      @apply text-[color-mix(in_srgb,var(--highlight-color),var(--text-color)_45%)];
+    }
+    h5 {
+      @apply text-lg;
+      @apply font-bold;
+      @apply text-[color-mix(in_srgb,var(--highlight-color),var(--text-color)_60%)];
+    }
+    h6 {
+      @apply text-base;
+      @apply font-bold;
+      @apply text-[color-mix(in_srgb,var(--highlight-color),var(--text-color)_75%)];
+    }
+
+    strong {
+      color: var(--highlight-color);
+    }
+
+    a {
+      @apply text-[var(--highlight-color)];
+    }
+
+    pre {
+      @apply m-2;
+      @apply p-1;
+      @apply rounded-[4px];
+    }
+
+    p,
+    ul,
+    ol,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      code {
+        @apply bg-[color-mix(in_srgb,var(--background-color),var(--text-color)_15%)];
+        @apply p-0.5;
+        @apply rounded-sm;
+      }
+    }
+
+    p {
+      @apply my-2;
+    }
+
+    ol {
+      @apply list-decimal;
+      @apply list-outside;
+      @apply pl-8;
+    }
+
+    ul {
+      @apply list-disc;
+      @apply list-outside;
+      @apply pl-8;
+    }
+
+    blockquote {
+      @apply pl-3;
+      @apply ml-1;
+      @apply py-3;
+      @apply my-1;
+      @apply border-[var(--highlight-color)];
+      @apply border-solid;
+      @apply border-l-2;
+    }
+  }
+}

@@ -1,4 +1,0 @@
-builds:
-  exclude:
-    - "checks.*.pre-commit"
-    - "packages.*.*"

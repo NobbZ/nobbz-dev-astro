@@ -1,0 +1,47 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: "^Cargo.nix$"
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: forbid-submodules
+
+  ## Add back later when there is time to properly configure it
+  # - repo: https://github.com/fsfe/reuse-tool
+  #   rev: v1.1.2
+  #   hooks:
+  #     - id: reuse
+
+  - repo: local
+    hooks:
+      - id: alejandra
+        name: Alejandra nix formatting
+        language: system
+        files: ".*\\.nix$"
+        entry: alejandra --check
+
+      - id: prettier
+        name: Prettier JS/TS/bulk formatting
+        language: system
+        files: ".*\\.([jt]sx?|astro|mdx?|mjs|json|ya?ml)$"
+        entry: yarn prettier -w
+
+      - id: astro-check
+        name: Astro Check
+        language: system
+        files: "^src/.*"
+        entry: yarn astro check
+        pass_filenames: false
+
+      - id: eslint
+        name: ESlint
+        language: system
+        files: "^src/.*"
+        entry: yarn eslint
+        pass_filenames: false

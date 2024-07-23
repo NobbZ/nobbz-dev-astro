@@ -1,0 +1,57 @@
+---
+import NavBox from "../components/NavBox.astro";
+
+const { title } = Astro.props;
+import "../styles/base.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div
+      class:list={[
+        "w-1/1",
+        "md:w-[1024px]",
+        "m-auto",
+        "md:border-4",
+        "rounded-[12px]",
+      ]}
+    >
+      <div class:list={["md:flex"]}>
+        <div
+          id="main"
+          class:list={[
+            "w-1/1",
+            "border-4",
+            "p-1",
+            "rounded-[12px]",
+            "md:w-4/5",
+            "md:m-1",
+          ]}
+        >
+          <slot />
+        </div>
+        <NavBox />
+      </div>
+      <footer
+        id="bottom"
+        class:list={[
+          "w-1/1",
+          "border-4",
+          "mt-1",
+          "p-1",
+          "rounded-[12px]",
+          "md:m-1",
+        ]}
+      >
+        © by Norbert Melzer in {new Date().getFullYear()}
+      </footer>
+    </div>
+  </body>
+</html>

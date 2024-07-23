@@ -1,0 +1,14 @@
+---
+import { getCollection } from "astro:content";
+
+import PostPreview from "../../components/PostPreview.astro";
+import NobbzDev from "../../layouts/NobbzDev.astro";
+
+const blogEntries = await getCollection("blog").then((collection) =>
+  collection.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+);
+---
+
+<NobbzDev title="Blog">
+  {blogEntries.map((post) => <PostPreview post={post} />)}
+</NobbzDev>

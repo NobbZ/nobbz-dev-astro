@@ -1,0 +1,35 @@
+---
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+import NobbzDev from "../../layouts/NobbzDev.astro";
+
+const components = {};
+
+export const getStaticPaths = (async () => {
+  const authorEntries = await getCollection("authors");
+
+  return authorEntries.map((author) => ({
+    params: {
+      slug: author.slug,
+    },
+    props: { author },
+  }));
+}) satisfies GetStaticPaths;
+
+export type Props = {
+  author: CollectionEntry<"authors">;
+};
+
+const { author } = Astro.props;
+const { Content } = await author.render();
+---
+
+<NobbzDev title={author.data.nick_name}>
+  <article>
+    <h1 class:list={["p-1"]}>{author.data.nick_name}</h1>
+
+    <Content components={components} />
+  </article>
+</NobbzDev>

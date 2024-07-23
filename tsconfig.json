@@ -1,27 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "lib": ["dom", "esnext"],
-    "jsx": "react",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "~components/*": ["src/components/*"],
-      "~components": ["src/components"],
-      "~pages": ["src/pages/*"]
-    },
-    "types": [],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "sourceMap": true
-  },
-  "include": [
-    "./src/**/*",
-    "./gatsby-node.ts",
-    "./gatsby-config.ts",
-    "./plugins/**/*"
-  ]
+  "extends": "astro/tsconfigs/strict",
+  "exclude": ["dist/*"]
 }
